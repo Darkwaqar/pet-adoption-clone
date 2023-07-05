@@ -42,8 +42,13 @@ const DrawerNavigator = () => {
             <Icon name="paw" size={25} style={{ marginRight: -20, color }} />
           ),
         }}
-        component={StackNavigator}
-      ></Drawer.Screen>
+      >
+        {(props) => (
+          <DrawerScreenContainer>
+            <HomeScreen {...props} />
+          </DrawerScreenContainer>
+        )}
+      </Drawer.Screen>
 
       <Drawer.Screen
         name="DONATION"
@@ -52,8 +57,13 @@ const DrawerNavigator = () => {
             <Icon name="gift" size={25} style={{ marginRight: -20, color }} />
           ),
         }}
-        component={ProfileScreen}
-      ></Drawer.Screen>
+      >
+        {(props) => (
+          <DrawerScreenContainer>
+            <HomeScreen {...props} />
+          </DrawerScreenContainer>
+        )}
+      </Drawer.Screen>
 
       <Drawer.Screen
         name="ADD PET"
@@ -66,8 +76,13 @@ const DrawerNavigator = () => {
             />
           ),
         }}
-        component={ProfileScreen}
-      ></Drawer.Screen>
+      >
+        {(props) => (
+          <DrawerScreenContainer>
+            <HomeScreen {...props} />
+          </DrawerScreenContainer>
+        )}
+      </Drawer.Screen>
 
       <Drawer.Screen
         name="FAVOURITES"
@@ -76,8 +91,13 @@ const DrawerNavigator = () => {
             <Icon name="heart" size={25} style={{ marginRight: -20, color }} />
           ),
         }}
-        component={ProfileScreen}
-      ></Drawer.Screen>
+      >
+        {(props) => (
+          <DrawerScreenContainer>
+            <HomeScreen {...props} />
+          </DrawerScreenContainer>
+        )}
+      </Drawer.Screen>
 
       <Drawer.Screen
         name="PROFILE"
@@ -90,8 +110,13 @@ const DrawerNavigator = () => {
             />
           ),
         }}
-        component={ProfileScreen}
-      ></Drawer.Screen>
+      >
+        {(props) => (
+          <DrawerScreenContainer>
+            <HomeScreen {...props} />
+          </DrawerScreenContainer>
+        )}
+      </Drawer.Screen>
     </Drawer.Navigator>
   );
 };

@@ -8,6 +8,7 @@ import {
   useDrawerStatus,
 } from "@react-navigation/drawer";
 import Animated, {
+  SharedValue,
   interpolate,
   useAnimatedStyle,
 } from "react-native-reanimated";
@@ -15,27 +16,18 @@ import COLORS from "../constants/colors";
 
 function DrawerScreenContainer({ children }) {
   const isDrawerOpen = useDrawerStatus();
-  //   const progress = useDrawerProgress();
+  const progress = useDrawerProgress() as Readonly<SharedValue<number>>;
 
-  //   const animatedStyle = useAnimatedStyle(() => {
-  //     return {
-  //       transform: [
-  //         {
-  //           translateX: interpolate(progress, [0, 1], [-100, 0]),
-  //         },
-  //       ],
-  //     };
-  //   });
+  const animatedStyle = useAnimatedStyle(() => {
+    const scale = interpolate(progress.value, [0, 1], [1, 0.8]);
 
-  //   const animatedStyles = useAnimatedStyle(() => {
-  //     const scale = interpolate(progress, [0, 1], [1, 0.8]);
-  //     const borderRadius = interpolate(progress, [0, 1], [0, 25]);
+    const borderRadius = interpolate(progress.value, [0, 1], [0, 25]);
 
-  //     return {
-  //       transform: [{ scale: scale }],
-  //       borderRadius: borderRadius,
-  //     };
-  //   });
+    return {
+      borderRadius,
+      transform: [{ scale }],
+    };
+  }, []);
 
   return (
     <Animated.View
@@ -43,11 +35,10 @@ function DrawerScreenContainer({ children }) {
         {
           flex: 1,
           backgroundColor: COLORS.white,
-          // borderRadius,
           // transform: [{ scale }],
           overflow: "hidden",
         },
-        // animatedStyle,
+        animatedStyle,
       ]}
     >
       <StatusBar
